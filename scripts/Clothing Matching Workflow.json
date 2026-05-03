@@ -1,0 +1,297 @@
+{
+  "1": {
+    "inputs": {
+      "garment_description": "",
+      "negative_prompt": "",
+      "width": 768,
+      "height": 1024,
+      "num_inference_steps": 30,
+      "guidance_scale": 2.5,
+      "strength": 0.6,
+      "seed": 972672755836129,
+      "faceid_weight": 1.2,
+      "faceid_start": 0,
+      "faceid_end": 0,
+      "pipeline": [
+        "10",
+        0
+      ],
+      "human_img": [
+        "2",
+        0
+      ],
+      "pose_img": [
+        "3",
+        0
+      ],
+      "mask_img": [
+        "9",
+        0
+      ],
+      "garment_img": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "IDM-VTON",
+    "_meta": {
+      "title": "Run IDM-VTON Inference"
+    }
+  },
+  "2": {
+    "inputs": {
+      "image": "微信图片_20260503182930.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "3": {
+    "inputs": {
+      "detect_hand": "enable",
+      "detect_body": "enable",
+      "detect_face": "enable",
+      "resolution": 768,
+      "bbox_detector": "yolox_l.onnx",
+      "pose_estimator": "dw-ll_ucoco_384_bs5.torchscript.pt",
+      "scale_stick_for_xinsr_cn": "disable",
+      "image": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "DWPreprocessor",
+    "_meta": {
+      "title": "DWPose Estimator"
+    }
+  },
+  "4": {
+    "inputs": {
+      "image": "thisisneverthat_jk001_15.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "5": {
+    "inputs": {
+      "model_name": "sam_hq_vit_h (2.57GB)"
+    },
+    "class_type": "SAMModelLoader (segment anything)",
+    "_meta": {
+      "title": "SAMModelLoader (segment anything)"
+    }
+  },
+  "6": {
+    "inputs": {
+      "model_name": "GroundingDINO_SwinB (938MB)"
+    },
+    "class_type": "GroundingDinoModelLoader (segment anything)",
+    "_meta": {
+      "title": "GroundingDinoModelLoader (segment anything)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "prompt": "jacket",
+      "threshold": 0.3,
+      "sam_model": [
+        "5",
+        0
+      ],
+      "grounding_dino_model": [
+        "6",
+        0
+      ],
+      "image": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "GroundingDinoSAMSegment (segment anything)",
+    "_meta": {
+      "title": "GroundingDinoSAMSegment (segment anything)"
+    }
+  },
+  "9": {
+    "inputs": {
+      "mask": [
+        "7",
+        1
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "遮罩转换为图像"
+    }
+  },
+  "10": {
+    "inputs": {
+      "weight_dtype": "float16"
+    },
+    "class_type": "PipelineLoader",
+    "_meta": {
+      "title": "Load IDM-VTON Pipeline"
+    }
+  },
+  "16": {
+    "inputs": {
+      "model_name": "sam_hq_vit_h (2.57GB)"
+    },
+    "class_type": "SAMModelLoader (segment anything)",
+    "_meta": {
+      "title": "SAMModelLoader (segment anything)"
+    }
+  },
+  "17": {
+    "inputs": {
+      "model_name": "GroundingDINO_SwinB (938MB)"
+    },
+    "class_type": "GroundingDinoModelLoader (segment anything)",
+    "_meta": {
+      "title": "GroundingDinoModelLoader (segment anything)"
+    }
+  },
+  "18": {
+    "inputs": {
+      "prompt": "pants",
+      "threshold": 0.3,
+      "sam_model": [
+        "16",
+        0
+      ],
+      "grounding_dino_model": [
+        "17",
+        0
+      ],
+      "image": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "GroundingDinoSAMSegment (segment anything)",
+    "_meta": {
+      "title": "GroundingDinoSAMSegment (segment anything)"
+    }
+  },
+  "22": {
+    "inputs": {
+      "image": "thisisneverthat_bottom_5bdc43af78.jpg"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "23": {
+    "inputs": {
+      "garment_description": "",
+      "negative_prompt": "",
+      "width": 768,
+      "height": 1024,
+      "num_inference_steps": 30,
+      "guidance_scale": 2.5,
+      "strength": 0.8,
+      "seed": 851249998002062,
+      "faceid_weight": 0.8,
+      "faceid_start": 0,
+      "faceid_end": 0,
+      "pipeline": [
+        "24",
+        0
+      ],
+      "human_img": [
+        "1",
+        0
+      ],
+      "pose_img": [
+        "3",
+        0
+      ],
+      "mask_img": [
+        "25",
+        0
+      ],
+      "garment_img": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "IDM-VTON",
+    "_meta": {
+      "title": "Run IDM-VTON Inference"
+    }
+  },
+  "24": {
+    "inputs": {
+      "weight_dtype": "float16"
+    },
+    "class_type": "PipelineLoader",
+    "_meta": {
+      "title": "Load IDM-VTON Pipeline"
+    }
+  },
+  "25": {
+    "inputs": {
+      "mask": [
+        "18",
+        1
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "遮罩转换为图像"
+    }
+  },
+  "29": {
+    "inputs": {
+      "enabled": true,
+      "swap_model": "inswapper_128.onnx",
+      "facedetection": "retinaface_resnet50",
+      "face_restore_model": "codeformer-v0.1.0.pth",
+      "face_restore_visibility": 1,
+      "codeformer_weight": 0,
+      "detect_gender_input": "no",
+      "detect_gender_source": "no",
+      "input_faces_index": "0",
+      "source_faces_index": "0",
+      "console_log_level": 1,
+      "input_image": [
+        "23",
+        0
+      ],
+      "source_image": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "ReActorFaceSwap",
+    "_meta": {
+      "title": "ReActor 🌌 Fast Face Swap"
+    }
+  },
+  "31": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "29",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "50": {
+    "inputs": {
+      "image": "微信图片_20260503175508.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  }
+}
